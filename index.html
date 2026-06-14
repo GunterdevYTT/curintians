@@ -2,23 +2,37 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>corinthians - história</title>
+<title>corinthians</title>
+
+<!-- fonte moderna -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
   body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #000000, #8b0000);
-    color: white;
-    font-variant: small-caps;
+    font-family: "Inter", sans-serif;
+    background: #ffffff;
+    color: #111;
   }
 
   header {
-    padding: 25px;
-    text-align: center;
-    font-size: 34px;
-    border-bottom: 2px solid rgba(255,255,255,0.3);
-    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    border-bottom: 2px solid #eee;
+  }
+
+  header img {
+    width: 55px;
+    height: 55px;
+  }
+
+  header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
   }
 
   nav {
@@ -26,70 +40,70 @@
     justify-content: center;
     gap: 10px;
     padding: 15px;
-    flex-wrap: wrap;
+    border-bottom: 1px solid #eee;
   }
 
   nav button {
-    background: rgba(0,0,0,0.4);
-    border: 1px solid white;
+    background: #111;
     color: white;
-    padding: 10px 18px;
+    border: none;
+    padding: 10px 16px;
     cursor: pointer;
-    transition: 0.3s;
-    font-variant: small-caps;
+    border-radius: 6px;
+    font-weight: 600;
   }
 
   nav button:hover {
-    background: white;
-    color: black;
-    transform: scale(1.05);
+    background: #444;
   }
 
   .container {
     max-width: 1000px;
     margin: auto;
     padding: 25px;
-    animation: fade 0.3s ease-in-out;
   }
 
-  @keyframes fade {
-    from {opacity: 0; transform: translateY(10px);}
-    to {opacity: 1; transform: translateY(0);}
-  }
-
-  h2 {
-    border-left: 4px solid white;
-    padding-left: 10px;
+  .card {
+    background: #f7f7f7;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
   }
 
   ul {
     line-height: 1.8;
   }
 
-  .card {
-    background: rgba(0,0,0,0.4);
-    padding: 15px;
-    border: 1px solid rgba(255,255,255,0.2);
-    margin-top: 10px;
+  .path {
+    text-align: center;
+    font-family: monospace;
+    color: #666;
+    margin-top: 5px;
   }
 </style>
 </head>
 
 <body>
 
-<header>sport club corinthians paulista</header>
+<header>
+  <img src="https://upload.wikimedia.org/wikipedia/pt/b/b4/Corinthians_simbolo.png" alt="logo">
+  <h1>sport club corinthians paulista</h1>
+</header>
+
+<div class="path" id="path">/home</div>
 
 <nav>
-  <button onclick="go('home')">/home</button>
-  <button onclick="go('historia')">/historia</button>
-  <button onclick="go('jogos')">/jogos</button>
+  <button onclick="go('home')">home</button>
+  <button onclick="go('historia')">história</button>
+  <button onclick="go('jogos')">jogos</button>
 </nav>
 
 <div class="container" id="app"></div>
 
 <script>
 const jogos = [
-  "2024-01-20 | Corinthians 2x1 Santos",
+  // 2024
+  "2024-01-21 | Corinthians 2x1 Santos",
   "2024-02-02 | Corinthians 0x0 Palmeiras",
   "2024-02-15 | Corinthians 1x1 São Paulo",
   "2024-03-03 | Corinthians 3x0 Bragantino",
@@ -104,7 +118,9 @@ const jogos = [
   "2024-08-11 | Corinthians 1x2 Palmeiras",
   "2024-09-19 | Corinthians 2x1 Grêmio",
   "2024-10-03 | Corinthians 0x0 Botafogo",
+  "2024-11-12 | Corinthians 1x0 Bahia",
 
+  // 2025
   "2025-01-12 | Corinthians 1x0 Santos",
   "2025-02-02 | Corinthians 2x2 São Paulo",
   "2025-02-23 | Corinthians 1x0 Palmeiras",
@@ -114,61 +130,69 @@ const jogos = [
   "2025-06-01 | Corinthians 2x0 Atlético-MG",
   "2025-07-14 | Corinthians 0x0 Fluminense",
   "2025-08-22 | Corinthians 2x1 Cruzeiro",
+  "2025-09-09 | Corinthians 1x1 Grêmio",
+  "2025-10-18 | Corinthians 2x0 Vasco",
 
+  // 2026
   "2026-01-18 | Corinthians 1x1 Santos",
   "2026-02-02 | Corinthians 2x0 Grêmio",
   "2026-03-11 | Corinthians 1x0 Atlético-GO",
-  "2026-04-05 | Corinthians 3x2 Palmeiras"
+  "2026-04-05 | Corinthians 3x2 Palmeiras",
+  "2026-05-20 | Corinthians 2x1 Flamengo"
 ];
 
 function go(page) {
   const app = document.getElementById("app");
+  const path = document.getElementById("path");
 
   if (page === "home") {
+    path.innerText = "/home";
+
     app.innerHTML = `
-      <h2>home</h2>
       <div class="card">
-        bem-vindo ao portal do corinthians.<br><br>
-        aqui você encontra a história completa do clube e seus jogos recentes.
+        bem-vindo ao portal oficial do sport club corinthians paulista.<br><br>
+        aqui você encontra informações históricas completas e todos os jogos recentes organizados por temporada.
       </div>
     `;
   }
 
   if (page === "historia") {
+    path.innerText = "/historia";
+
     app.innerHTML = `
-      <h2>história completa</h2>
-
       <div class="card">
-        fundado em 1º de setembro de 1910 por operários do bairro do bom retiro, 
-        o sport club corinthians paulista nasceu como um clube do povo.
+        fundado em 1º de setembro de 1910 no bairro do bom retiro, em são paulo, 
+        por um grupo de operários inspirados por clubes ingleses, o sport club corinthians paulista 
+        nasceu com a missão de ser um clube do povo.
       </div>
 
       <div class="card">
-        ao longo do século xx, o clube se consolidou como uma das maiores forças do futebol brasileiro, 
-        com uma das torcidas mais apaixonadas do mundo.
+        ao longo de sua história, o corinthians se tornou um dos clubes mais populares e vitoriosos do brasil, 
+        construindo uma identidade marcada pela paixão de sua torcida e pela força em momentos decisivos.
       </div>
 
       <div class="card">
-        conquistas principais:
+        o clube conquistou títulos de enorme importância nacional e internacional, incluindo:
         <ul>
-          <li>campeonato mundial de clubes (2000, 2012)</li>
           <li>copa libertadores da américa (2012)</li>
-          <li>campeonatos brasileiros (vários títulos)</li>
+          <li>mundial de clubes da fifa (2000 e 2012)</li>
+          <li>campeonatos brasileiros</li>
           <li>copas do brasil</li>
-          <li>campeonatos paulistas</li>
+          <li>inúmeros campeonatos paulistas</li>
         </ul>
       </div>
 
       <div class="card">
-        o corinthians também é conhecido por sua identidade popular, 
-        sua torcida organizada e sua influência cultural no brasil.
+        além dos títulos, o corinthians é conhecido por sua forte ligação com a cultura popular brasileira, 
+        sendo considerado um símbolo de resistência, paixão e identidade do povo.
       </div>
     `;
   }
 
   if (page === "jogos") {
+    path.innerText = "/jogos";
+
     app.innerHTML = `
-      <h2>jogos (2024 - 2026)</h2>
       <div class="card">
         <ul>
           ${jogos.map(j => `<li>${j}</li>`).join("")}
