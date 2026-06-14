@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>corinthians</title>
 
-<!-- fonte moderna -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -30,9 +29,16 @@
   }
 
   header h1 {
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 22px;
     margin: 0;
+    font-weight: 700;
+  }
+
+  .path {
+    text-align: center;
+    font-family: monospace;
+    color: #666;
+    margin-top: 5px;
   }
 
   nav {
@@ -41,6 +47,7 @@
     gap: 10px;
     padding: 15px;
     border-bottom: 1px solid #eee;
+    flex-wrap: wrap;
   }
 
   nav button {
@@ -67,18 +74,34 @@
     background: #f7f7f7;
     padding: 15px;
     border-radius: 8px;
-    margin-top: 10px;
+    margin-top: 12px;
   }
 
   ul {
     line-height: 1.8;
   }
 
-  .path {
+  table {
+    border-collapse: collapse;
+    width: 100%;
     text-align: center;
-    font-family: monospace;
-    color: #666;
-    margin-top: 5px;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  th {
+    background: #111;
+    color: white;
+    padding: 8px;
+  }
+
+  td {
+    border-bottom: 1px solid #ddd;
+    padding: 6px;
+  }
+
+  tr:hover {
+    background: #f0f0f0;
   }
 </style>
 </head>
@@ -86,7 +109,7 @@
 <body>
 
 <header>
-  <img src="https://upload.wikimedia.org/wikipedia/pt/b/b4/Corinthians_simbolo.png" alt="logo">
+  <img src="https://upload.wikimedia.org/wikipedia/pt/b/b4/Corinthians_simbolo.png">
   <h1>sport club corinthians paulista</h1>
 </header>
 
@@ -102,44 +125,63 @@
 
 <script>
 const jogos = [
-  // 2024
   "2024-01-21 | Corinthians 2x1 Santos",
   "2024-02-02 | Corinthians 0x0 Palmeiras",
   "2024-02-15 | Corinthians 1x1 São Paulo",
   "2024-03-03 | Corinthians 3x0 Bragantino",
   "2024-03-18 | Corinthians 0x2 Flamengo",
   "2024-04-05 | Corinthians 1x0 Internacional",
-  "2024-04-14 | Corinthians 0x0 Atlético-MG",
-  "2024-05-01 | Corinthians 2x2 Cruzeiro",
   "2024-05-28 | Corinthians 3x0 Racing",
   "2024-06-10 | Corinthians 1x1 Fluminense",
-  "2024-06-16 | Corinthians 0x1 São Paulo",
   "2024-07-02 | Corinthians 2x0 Vasco",
   "2024-08-11 | Corinthians 1x2 Palmeiras",
   "2024-09-19 | Corinthians 2x1 Grêmio",
-  "2024-10-03 | Corinthians 0x0 Botafogo",
   "2024-11-12 | Corinthians 1x0 Bahia",
 
-  // 2025
   "2025-01-12 | Corinthians 1x0 Santos",
-  "2025-02-02 | Corinthians 2x2 São Paulo",
   "2025-02-23 | Corinthians 1x0 Palmeiras",
   "2025-03-16 | Corinthians 0x1 Flamengo",
-  "2025-04-20 | Corinthians 1x1 Bragantino",
   "2025-05-10 | Corinthians 3x1 Internacional",
-  "2025-06-01 | Corinthians 2x0 Atlético-MG",
   "2025-07-14 | Corinthians 0x0 Fluminense",
-  "2025-08-22 | Corinthians 2x1 Cruzeiro",
-  "2025-09-09 | Corinthians 1x1 Grêmio",
   "2025-10-18 | Corinthians 2x0 Vasco",
 
-  // 2026
-  "2026-01-18 | Corinthians 1x1 Santos",
   "2026-02-02 | Corinthians 2x0 Grêmio",
-  "2026-03-11 | Corinthians 1x0 Atlético-GO",
   "2026-04-05 | Corinthians 3x2 Palmeiras",
   "2026-05-20 | Corinthians 2x1 Flamengo"
 ];
+
+const tabela = [
+  {pos: 1, clube: "Palmeiras", pts: 62, j: 30, v: 19, e: 5, d: 6},
+  {pos: 2, clube: "Flamengo", pts: 60, j: 30, v: 18, e: 6, d: 6},
+  {pos: 3, clube: "Atlético-MG", pts: 55, j: 30, v: 16, e: 7, d: 7},
+  {pos: 4, clube: "Grêmio", pts: 52, j: 30, v: 15, e: 7, d: 8},
+  {pos: 5, clube: "Corinthians", pts: 49, j: 30, v: 14, e: 7, d: 9},
+  {pos: 6, clube: "São Paulo", pts: 47, j: 30, v: 13, e: 8, d: 9}
+];
+
+function tabelaHTML() {
+  return `
+    <div class="card">
+      <h3>classificação ao vivo</h3>
+      <table>
+        <tr>
+          <th>pos</th><th>clube</th><th>pts</th><th>j</th><th>v</th><th>e</th><th>d</th>
+        </tr>
+        ${tabela.map(t => `
+          <tr>
+            <td>${t.pos}</td>
+            <td>${t.clube}</td>
+            <td>${t.pts}</td>
+            <td>${t.j}</td>
+            <td>${t.v}</td>
+            <td>${t.e}</td>
+            <td>${t.d}</td>
+          </tr>
+        `).join("")}
+      </table>
+    </div>
+  `;
+}
 
 function go(page) {
   const app = document.getElementById("app");
@@ -150,9 +192,10 @@ function go(page) {
 
     app.innerHTML = `
       <div class="card">
-        bem-vindo ao portal oficial do sport club corinthians paulista.<br><br>
-        aqui você encontra informações históricas completas e todos os jogos recentes organizados por temporada.
+        bem-vindo ao portal oficial do sport club corinthians paulista.
       </div>
+
+      ${tabelaHTML()}
     `;
   }
 
@@ -160,32 +203,95 @@ function go(page) {
     path.innerText = "/historia";
 
     app.innerHTML = `
-      <div class="card">
-        fundado em 1º de setembro de 1910 no bairro do bom retiro, em são paulo, 
-        por um grupo de operários inspirados por clubes ingleses, o sport club corinthians paulista 
-        nasceu com a missão de ser um clube do povo.
-      </div>
+<div class="card">
+  fundado em 1910 no bairro do bom retiro, o corinthians nasceu como um clube operário,
+  representando o povo paulista. a ideia partiu de cinco operários (joaquim ambrosio,
+  antonio pereira, carlos silva, joaquim graves e ralph crompton), que queriam dar vida
+  a um time sem elites, aberto a todos. o nome veio de um time inglês: o corinthian-casuals.
+</div>
 
-      <div class="card">
-        ao longo de sua história, o corinthians se tornou um dos clubes mais populares e vitoriosos do brasil, 
-        construindo uma identidade marcada pela paixão de sua torcida e pela força em momentos decisivos.
-      </div>
+<div class="card">
+  ao longo dos anos, tornou-se um dos clubes mais populares e vitoriosos do brasil,
+  com forte identidade cultural e uma torcida apaixonada. um dos marcos históricos
+  foi a "invasão corintiana" em 1976, quando mais de 70 mil torcedores foram ao
+  rio de janeiro ver o corinthians quebrar um jejum de 22 anos sem títulos paulistas.
+</div>
 
-      <div class="card">
-        o clube conquistou títulos de enorme importância nacional e internacional, incluindo:
-        <ul>
-          <li>copa libertadores da américa (2012)</li>
-          <li>mundial de clubes da fifa (2000 e 2012)</li>
-          <li>campeonatos brasileiros</li>
-          <li>copas do brasil</li>
-          <li>inúmeros campeonatos paulistas</li>
-        </ul>
-      </div>
+<div class="card">
+  <strong>1977: o fim do jejum</strong><br>
+  após 23 anos sem vencer o campeonato paulista, o corinthians conquistou o título
+  contra a ponte preta, com gol de basílio. a cidade de são paulo parou. foi a
+  "libertação" da fiel torcida, que tomou as ruas numa comoção jamais vista.
+</div>
 
-      <div class="card">
-        além dos títulos, o corinthians é conhecido por sua forte ligação com a cultura popular brasileira, 
-        sendo considerado um símbolo de resistência, paixão e identidade do povo.
-      </div>
+<div class="card">
+  <strong>década de 80: a democracia corintiana</strong><br>
+  liderada por sócrates, casagrande, zenon e wladimir, os jogadores se uniram para
+  lutar contra a ditadura militar, votando internamente as decisões do clube.
+  além da resistência política, o time encantou o brasil com futebol-arte e conquistou
+  os paulistas de 1982, 1983 e 1988.
+</div>
+
+<div class="card">
+  <strong>2000: o primeiro mundial</strong><br>
+  no primeiro campeonato mundial de clubes da fifa, o corinthians venceu o real madrid
+  na final (2 a 2 no tempo normal e 4 a 3 nos pênaltis), com o lendário goleiro
+  difrância defendendo pênalti decisivo. foi o primeiro título mundial da história do clube.
+</div>
+
+<div class="card">
+  <strong>2005: o tetra brasileiro</strong><br>
+  com tevez, mascherano, nilmar e carlos alberto, o corinthians conquistou o brasileirão
+  de forma inesquecível, quebrando a hegemonia de outros clubes e mostrando força.
+</div>
+
+<div class="card">
+  <strong>2007: o rebaixamento e a reconstrução</strong><br>
+  pela primeira vez, o corinthians caiu para a série b. foi um baque enorme, mas serviu
+  para unir ainda mais a torcida. em 2008, o time venceu a série b com autoridade
+  e voltou para a elite, reconstruído e mais forte.
+</div>
+
+<div class="card">
+  <strong>2009: a volta por cima com ronaldo fenômeno</strong><br>
+  a fiel torcida fez uma "vaquinha" popular para ajudar o clube a contratar ronaldo,
+  que estava no milan. ele veio, emagreceu, jogou como nunca e liderou o corinthians
+  aos títulos da copa do brasil e do paulistão, calando os críticos.
+</div>
+
+<div class="card">
+  <strong>2012: o ano mágico</strong><br>
+  o corinthians conquistou tudo: paulistão (invicto), libertadores da américa
+  (batendo o boca juniors na final, no monumental, com gol de emerson sheik)
+  e o mundial de clubes (vitória por 1 a 0 sobre o chelsea, com gol de guerrero).
+  time sólido com cássio, chicão, paulinho, danilo e muitos outros.
+</div>
+
+<div class="card">
+  conquistas principais:
+  <ul>
+    <li>libertadores da américa (2012)</li>
+    <li>mundial de clubes (2000, 2012)</li>
+    <li>campeonatos brasileiros (1990, 1998, 1999, 2005, 2011, 2015, 2017)</li>
+    <li>copas do brasil (1995, 2002, 2009)</li>
+    <li>recopa sul-americana (2013)</li>
+    <li>30 campeonatos paulistas</li>
+    <li>1 campeonato brasileiro série b (2008)</li>
+  </ul>
+</div>
+
+<div class="card">
+  <strong>ídolos eternos</strong><br>
+  sócrates, rivellino, basílio, wladimir, zenon, casagrande, neto, marcelinho carioca,
+  ronaldo fenômeno, chicão, paulinho, cássio, sheik, guerrero e muitos outros.
+  cada um deixou sua marca nessa história gigante.
+</div>
+
+<div class="card">
+  o clube é símbolo de resistência, tradição e paixão popular no futebol mundial.
+  a fiel torcida é considerada uma das maiores e mais fiéis do planeta, capaz de
+  lotar estádios, viajar continentes e nunca abandonar o time.
+</div>
     `;
   }
 
